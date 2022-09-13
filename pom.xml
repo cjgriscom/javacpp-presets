@@ -625,6 +625,7 @@
         <module>skia</module>
         <module>cpu_features</module>
         <module>systems</module>
+        <module>aravis</module>
       </modules>
       <properties>
         <javacpp.platform>${os.name}-${os.arch}</javacpp.platform>
@@ -1150,6 +1151,7 @@
         <module>tesseract</module>
         <module>cpu_features</module>
         <module>systems</module>
+        <module>aravis</module>
       </modules>
       <properties>
         <javacpp.platform.android-arm></javacpp.platform.android-arm>
@@ -1344,6 +1346,7 @@
         <module>skia</module>
         <module>cpu_features</module>
         <module>systems</module>
+        <module>aravis</module>
       </modules>
       <properties>
         <javacpp.platform.android-arm></javacpp.platform.android-arm>

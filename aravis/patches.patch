@@ -1,0 +1,28 @@
+diff --git a/arvbuffer.h b/arvbuffer.h
+index cd89b3a..a3e80ed 100644
+--- a/arvbuffer.h
++++ b/arvbuffer.h
+@@ -87,7 +87,12 @@ typedef enum {
+ } ArvBufferPayloadType;
+ 
+ #define ARV_TYPE_BUFFER             (arv_buffer_get_type ())
+-ARV_API G_DECLARE_FINAL_TYPE (ArvBuffer, arv_buffer, ARV, BUFFER, GObject)
++GType arv_buffer_get_type (void);
++typedef struct _ArvBuffer ArvBuffer;
++typedef struct { GObjectClass parent_class; } ArvBufferClass;
++//_GLIB_DEFINE_AUTOPTR_CHAINUP (ArvBuffer, GObject) G_DEFINE_AUTOPTR_CLEANUP_FUNC (ArvBufferClass, g_type_class_unref)
++static inline ArvBuffer * ARV_BUFFER (gpointer ptr) { return G_TYPE_CHECK_INSTANCE_CAST (ptr, arv_buffer_get_type (), ArvBuffer); }
++static inline gboolean ARV_IS_BUFFER (gpointer ptr) { return G_TYPE_CHECK_INSTANCE_TYPE (ptr, arv_buffer_get_type ()); }
+ 
+ typedef void (*ArvFrameCallback)	(ArvBuffer *buffer);
+ 
+diff --git a/patch.h b/patch.h
+new file mode 100644
+index 0000000..cb2c30f
+--- /dev/null
++++ b/patch.h
+@@ -0,0 +1,4 @@
++#define __GIO_GIO_H_INSIDE__
++#define GIO_COMPILATION
++#define __GLIB_H_INSIDE__
++#define __GLIB_GOBJECT_H_INSIDE__

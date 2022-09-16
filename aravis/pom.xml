@@ -32,6 +32,22 @@
       <plugin>
         <groupId>org.bytedeco</groupId>
         <artifactId>javacpp</artifactId>
+        <executions>
+          <execution>
+            <id>javacpp-compiler</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <configuration>
+              <!--preloadPaths>
+                <preloadPath>${basedir}/cppbuild/${javacpp.platform}/lib</preloadPath>
+              </preloadPaths-->
+              <!--copyLibs>true</copyLibs-->
+              <compilerOptions>-L${basedir}/cppbuild/${javacpp.platform}/lib</compilerOptions>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
@@ -53,4 +69,3 @@
   </build>
 
 </project>
-

@@ -7,6 +7,11 @@ if [[ -z "$PLATFORM" ]]; then
     exit
 fi
 
+LANG=en_US.UTF-8
+export LANG
+
+GLIB_VERSION_MAJ=2.56
+GLIB_VERSION_MIN=2.56.1
 ARAVIS_VERSION=0.8.22
 MESON_VERSION=0.59.2
 mkdir -p $PLATFORM
@@ -23,6 +28,8 @@ case $PLATFORM in
         ;;
 esac
 
+download https://download.gnome.org/sources/glib/$GLIB_VERSION_MAJ/glib-$GLIB_VERSION_MIN.tar.xz glib-$GLIB_VERSION_MIN.tar.xz
+tar -xf glib-$GLIB_VERSION_MIN.tar.xz
 download https://github.com/AravisProject/aravis/releases/download/${ARAVIS_VERSION}/aravis-${ARAVIS_VERSION}.tar.xz aravis-${ARAVIS_VERSION}.tar.xz
 tar -xf aravis-${ARAVIS_VERSION}.tar.xz
 download https://github.com/mesonbuild/meson/releases/download/${MESON_VERSION}/meson-${MESON_VERSION}.tar.gz meson-${MESON_VERSION}.tar.gz
@@ -32,21 +39,25 @@ pushd meson-${MESON_VERSION}
 MESON=`realpath ./meson.pyz`
 popd
 
-pushd aravis-${ARAVIS_VERSION}
+pushd glib-${GLIB_VERSION_MIN}
 mkdir ../install || true
-$MESON build -Dviewer=disabled -Dusb=disabled -Dintrospection=disabled -Dgst-plugin=disabled -Dprefix=`realpath ../install`
+$MESON build -Dprefix=`realpath ../install`
 pushd build
 ninja
 ninja install
 popd
 popd
-rm include || true
-rm lib64 || true
-rm bin || true
-ln -s install/include/aravis-0.8 include
-ln -s install/lib64 lib64
-ln -s install/bin bin
-if [ -f install/patch.h ]; then
+
+pushd aravis-${ARAVIS_VERSION}
+mkdir ../install || true
+PATH=$PATH:`realpath ../install/bin/` $MESON build -Dlibdir=../install/lib64 -Dincludedir=../install/include -Dbindir=../install/bin -Dviewer=disabled -Dusb=disabled -Dintrospection=disabled -Dgst-plugin=disabled -Dprefix=`realpath ../install`  -Dpkg_config_path=`realpath ../install/lib64/pkgconfig/`
+pushd build
+PATH=$PATH:`realpath ../../install/bin/` ninja
+ninja install
+popd
+popd
+
+if [[ -f "install/include/aravis-0.8/patch.h" ]]; then
   echo Patch already applied
 else
   pushd install/include/aravis-0.8
@@ -55,4 +66,12 @@ else
   popd
 fi
 
+
+rm -R include || true
+mkdir include
+rm lib64 || true
+
+cp -R install/include/aravis-0.8/* include/
+cp -R install/include/glib-2.0/* include/
+ln -s install/lib64 lib64
 cd ..

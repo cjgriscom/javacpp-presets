@@ -7,7 +7,6 @@ import org.bytedeco.javacpp.tools.*;
 @Properties(
     value = {
         @Platform(
-            includepath = {"/usr/include/glib-2.0/", "/usr/lib64/glib-2.0/include/"},
             include = {
                 "<patch.h>",
                 "<glib/gerror.h>",
@@ -35,6 +34,11 @@ import org.bytedeco.javacpp.tools.*;
                 "<extra.h>",
             },
             link = {
+                "glib-2.0",
+                "gobject-2.0",
+                "gio-2.0",
+                "gthread-2.0",
+                "gmodule-2.0",
                 "aravis-0.8",
             }),
     },

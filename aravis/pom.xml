@@ -43,7 +43,7 @@
               <!--preloadPaths>
                 <preloadPath>${basedir}/cppbuild/${javacpp.platform}/lib</preloadPath>
               </preloadPaths-->
-              <!--copyLibs>true</copyLibs-->
+              <copyLibs>false</copyLibs>
               <compilerOptions>-L${basedir}/cppbuild/${javacpp.platform}/lib</compilerOptions>
             </configuration>
           </execution>

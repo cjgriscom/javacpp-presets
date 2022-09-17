@@ -1,0 +1,18 @@
+prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+exec_prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+libdir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/lib/aarch64-linux-gnu
+includedir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/include
+
+giomoduledir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/lib/aarch64-linux-gnu/gio/modules
+glib_compile_schemas=glib-compile-schemas
+glib_compile_resources=glib-compile-resources
+gdbus_codegen=gdbus-codegen
+
+Name: GIO
+Description: glib I/O library
+Version: 2.56.4
+Requires: glib-2.0 gobject-2.0
+Requires.private: gmodule-no-export-2.0
+Libs: -L${libdir} -lgio-2.0
+Libs.private: -lz -lresolv  -lselinux   -lmount
+Cflags:

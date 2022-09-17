@@ -1,0 +1,12 @@
+prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+libdir=${prefix}/../install/lib/aarch64-linux-gnu
+includedir=${prefix}/../install/include
+
+Name: Aravis
+Description: Camera control and image acquisition library
+Version: 0.8.22
+Requires: glib-2.0 >= 2.52, gobject-2.0, gio-2.0
+Requires.private: libxml-2.0, zlib
+Libs: -L${libdir} -laravis-0.8
+Libs.private: -lm
+Cflags: -I${includedir}/aravis-0.8

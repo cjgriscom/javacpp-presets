@@ -1,0 +1,16 @@
+prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+exec_prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+libdir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/lib/aarch64-linux-gnu
+includedir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/include
+
+glib_genmarshal=glib-genmarshal
+gobject_query=gobject-query
+glib_mkenums=glib-mkenums
+
+Name: GLib
+Description: C Utility Library
+Version: 2.56.4
+Requires.private: 
+Libs: -L${libdir} -lglib-2.0 
+Libs.private:   -lpcre    
+Cflags: -I${includedir}/glib-2.0 -I${libdir}/glib-2.0/include 

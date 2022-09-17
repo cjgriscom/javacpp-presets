@@ -1,0 +1,14 @@
+prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+exec_prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+libdir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/lib/aarch64-linux-gnu
+includedir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/include
+
+gmodule_supported=
+
+Name: GModule
+Description: Dynamic module loader for GLib
+Requires: glib-2.0
+Version: 2.56.4
+Libs: -L${libdir} -lgmodule-2.0 
+Libs.private: 
+Cflags: 

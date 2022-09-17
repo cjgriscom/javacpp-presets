@@ -1,0 +1,11 @@
+prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+exec_prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+libdir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/lib/aarch64-linux-gnu
+includedir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/include
+
+Name: GThread
+Description: Thread support for GLib
+Requires: glib-2.0
+Version: 2.56.4
+Libs: -L${libdir} -lgthread-2.0 
+Cflags: 

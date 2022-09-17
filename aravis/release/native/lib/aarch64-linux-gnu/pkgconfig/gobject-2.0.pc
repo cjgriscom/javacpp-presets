@@ -1,0 +1,12 @@
+prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+exec_prefix=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install
+libdir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/lib/aarch64-linux-gnu
+includedir=/root/javacpp-presets/aravis/cppbuild/linux-arm64/install/include
+
+Name: GObject
+Description: GLib Type, Object, Parameter and Signal Library
+Requires: glib-2.0
+Version: 2.56.4
+Libs: -L${libdir} -lgobject-2.0
+Libs.private: -lffi
+Cflags:
